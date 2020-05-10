@@ -36,3 +36,9 @@
   ```bash
   yarn test
   ```
+  
+#### :school_satchel: Praticando backend com NODE.JS
+
+##### Feito com :purple_heart: por Brendon Guedes.
+
+##### Considere deixar uma :star: neste projeto :heart_eyes:
