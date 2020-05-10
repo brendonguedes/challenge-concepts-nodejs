@@ -14,3 +14,23 @@
   <img alt="License" src="https://img.shields.io/badge/NODE.JS-DESAFIO%202%20GOSTACK-blue">
   
 </p>
+
+![Run in Insomnia}](https://insomnia.rest/images/run.svg)
+
+- Instale as dependências
+
+  ```bash
+  yarn
+  ```
+
+- Execute para experimentar
+
+  ```bash
+  yarn dev
+  ```
+
+- Rode os testes
+
+  ```bash
+  yarn test
+  ```
