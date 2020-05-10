@@ -17,6 +17,8 @@
 
 ![Run in Insomnia}](https://insomnia.rest/images/run.svg)
 
+<img alt="Insomnia" src="" />
+
 - Instale as dependências
 
   ```bash
