@@ -9,6 +9,29 @@ app.use(cors());
 
 const repositories = [];
 
+function logRequests(req, res, next) {
+  const { method, url } = req;
+
+  const LogLabel = `[${method.toUpperCase()}] ${url}`;
+
+  console.time(LogLabel);
+
+  next();
+
+  console.timeEnd(LogLabel);
+}
+
+function validateProjectId(req, res, next) {
+  const { id } = req.params;
+
+  if (!isUuid(id)) {
+    return res.status(400).json({ error: "Invalid project ID." });
+  }
+  return next();
+}
+
+app.use(logRequests);
+
 app.get("/repositories", (request, response) => {
   return response.status(200).json(repositories);
 });
@@ -20,7 +43,7 @@ app.post("/repositories", (request, response) => {
   return response.status(200).json(repository);
 });
 
-app.put("/repositories/:id", (request, response) => {
+app.put("/repositories/:id", validateProjectId, (request, response) => {
   const { id } = request.params;
   const { title, techs, url } = request.body;
 
@@ -39,7 +62,7 @@ app.put("/repositories/:id", (request, response) => {
   return response.status(200).json(repositories[repositoryIndex]);
 });
 
-app.delete("/repositories/:id", (request, response) => {
+app.delete("/repositories/:id", validateProjectId, (request, response) => {
   const { id } = request.params;
   const repositoryIndex = repositories.findIndex(
     (repository) => repository.id === id
@@ -52,7 +75,7 @@ app.delete("/repositories/:id", (request, response) => {
   return response.status(204).send();
 });
 
-app.post("/repositories/:id/like", (request, response) => {
+app.post("/repositories/:id/like", validateProjectId, (request, response) => {
   const { id } = request.params;
 
   const repositoryIndex = repositories.findIndex(
@@ -72,4 +95,5 @@ app.post("/repositories/:id/like", (request, response) => {
   return response.status(200).json(repositories[repositoryIndex]);
 });
 
-module.exports = app; console.log("🚀 Back-end started!");
+module.exports = app;
+console.log("🚀 Back-end started!");
