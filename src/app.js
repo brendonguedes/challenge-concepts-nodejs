@@ -9,8 +9,8 @@ app.use(cors());
 
 const repositories = [];
 
-function logRequests(req, res, next) {
-  const { method, url } = req;
+function logRequests(request, response, next) {
+  const { method, url } = request;
 
   const LogLabel = `[${method.toUpperCase()}] ${url}`;
 
@@ -21,8 +21,8 @@ function logRequests(req, res, next) {
   console.timeEnd(LogLabel);
 }
 
-function validateRepoId(req, res, next) {
-  const { id } = req.params;
+function validateRepoId(request, response, next) {
+  const { id } = request.params;
 
   if (!isUuid(id)) {
     return res.status(400).json({ error: "Invalid repo ID." });
@@ -43,7 +43,7 @@ app.post("/repositories", (request, response) => {
   return response.status(200).json(repository);
 });
 
-app.put("/repositories/:id", validateProjectId, (request, response) => {
+app.put("/repositories/:id", validateRepoId, (request, response) => {
   const { id } = request.params;
   const { title, techs, url } = request.body;
 
