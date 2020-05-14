@@ -17,7 +17,7 @@
 
 ![Run in Insomnia}](https://insomnia.rest/images/run.svg)
 
-<img alt="Insomnia" src="" />
+<img alt="Insomnia" src="https://github.com/brendonguedes/challenge-concepts-nodejs/blob/master/src/assets/Capturadetelade2020-05-10%2001-37-03.png" />
 
 - Instale as dependências
 
@@ -36,3 +36,9 @@
   ```bash
   yarn test
   ```
+  
+#### :school_satchel: Praticando backend com NODE.JS
+
+##### Feito com :purple_heart: por Brendon Guedes.
+
+##### Considere deixar uma :star: neste projeto :heart_eyes:
