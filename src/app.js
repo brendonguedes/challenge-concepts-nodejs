@@ -21,11 +21,11 @@ function logRequests(req, res, next) {
   console.timeEnd(LogLabel);
 }
 
-function validateProjectId(req, res, next) {
+function validateRepoId(req, res, next) {
   const { id } = req.params;
 
   if (!isUuid(id)) {
-    return res.status(400).json({ error: "Invalid project ID." });
+    return res.status(400).json({ error: "Invalid repo ID." });
   }
   return next();
 }
@@ -62,7 +62,7 @@ app.put("/repositories/:id", validateProjectId, (request, response) => {
   return response.status(200).json(repositories[repositoryIndex]);
 });
 
-app.delete("/repositories/:id", validateProjectId, (request, response) => {
+app.delete("/repositories/:id", validateRepoId, (request, response) => {
   const { id } = request.params;
   const repositoryIndex = repositories.findIndex(
     (repository) => repository.id === id
@@ -75,7 +75,7 @@ app.delete("/repositories/:id", validateProjectId, (request, response) => {
   return response.status(204).send();
 });
 
-app.post("/repositories/:id/like", validateProjectId, (request, response) => {
+app.post("/repositories/:id/like", validateRepoId, (request, response) => {
   const { id } = request.params;
 
   const repositoryIndex = repositories.findIndex(
